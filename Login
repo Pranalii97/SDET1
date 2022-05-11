@@ -1,0 +1,92 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class NewOpeningURL 
+{
+	/**
+     * This method is used to open the url and login in a new window in chrome
+     *
+     * @param wd = The webdriver
+     * @param urlToOpen = The URI which user wants to open
+     */
+     
+    public static void openURL(WebDriver wd, String urlToOpen) 
+    {
+        wd.get(urlToOpen);
+
+        wd.manage().window().maximize();
+    }
+
+    
+    public static void enterCredentials(WebDriver wd, String uri, String userName, String password) 
+    {
+        wd.get(uri);
+
+        wd.manage().window().maximize();
+
+        wd.findElement(By.id("user-name")).sendKeys(userName);
+        wd.findElement(By.id("password")).sendKeys(password);
+    }
+
+
+    public static void login(WebDriver wd, String uri, String userName, String password) 
+    {
+        wd.get(uri);
+
+        wd.manage().window().maximize();
+
+        wd.findElement(By.id("user-name")).sendKeys(userName);
+        wd.findElement(By.id("password")).sendKeys(password);
+        wd.findElement(By.id("login-button")).click();
+    }
+       
+     /*
+     *setproperty()==>  automates testcases on any browser
+     * @param wd ==> Webdriver is an interface and all the method which are declared in webdriver
+     * @param uri ==> URL 
+     * @param userName
+     * @param password
+     */
+
+    public static void main(String[] args) 
+    {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\\\Selenium\\\\Driver\\\\chromedriver.exe");
+
+        WebDriver wd1 = new ChromeDriver(); //Instance for opening page
+        WebDriver wd2 = new ChromeDriver();
+        WebDriver wd3 = new ChromeDriver();
+
+        String userName = "standard_user";
+        String password = "secret_sauce";
+        String uri = "https://www.saucedemo.com/";
+
+        //Openng url in new tab
+        openURL(wd1, uri);
+
+        //Entering specified credentials
+        enterCredentials(wd2,uri,userName,password);
+
+        //Login
+        login(wd3,uri,userName,password);
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
